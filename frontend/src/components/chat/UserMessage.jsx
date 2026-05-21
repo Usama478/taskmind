@@ -1,30 +1,23 @@
 export default function UserMessage({ message }) {
   const formatTime = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-  };
+    const date = new Date(timestamp)
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })
+  }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', maxWidth: '80%' }}>
-        <div
-          style={{
-            backgroundColor: '#2F3542',
-            color: 'white',
-            borderRadius: '12px 12px 0 12px',
-            padding: '12px 16px',
-            fontSize: '14px',
-            lineHeight: '1.6',
-            whiteSpace: 'pre-wrap',
-            wordBreak: 'break-word'
-          }}
-        >
+    <div className="mb-4 flex justify-end">
+      <div className="flex max-w-[85%] flex-col items-end">
+        <div className="whitespace-pre-wrap break-words rounded-2xl rounded-tr-md bg-gradient-to-br from-[#7C5CBF] to-[#5B3FBE] px-4 py-3 text-[14px] leading-6 text-white shadow-md shadow-[#7C5CBF]/20">
           {message.content}
         </div>
-        <div style={{ color: '#64648A', fontSize: '11px', marginTop: '4px', marginRight: '4px' }}>
+        <div className="mr-1 mt-1 text-[11px] text-gray-500">
           {formatTime(message.timestamp)}
         </div>
       </div>
     </div>
-  );
+  )
 }

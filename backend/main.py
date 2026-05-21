@@ -4,8 +4,8 @@ from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import Base, engine
-from routes import chat, tasks
+from database import initialize_database
+from routes import auth, chat, projects, tasks
 
 
 @asynccontextmanager
@@ -13,7 +13,7 @@ async def lifespan(app: FastAPI):
     """
     Startup event: Create database tables on first run.
     """
-    Base.metadata.create_all(bind=engine)
+    initialize_database()
     yield
 
 
@@ -35,6 +35,8 @@ app.add_middleware(
 )
 
 # Include routers with prefixes
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+app.include_router(projects.router, prefix="/projects", tags=["Projects"])
 app.include_router(tasks.router, prefix="/tasks", tags=["Tasks"])
 app.include_router(chat.router, prefix="/chat", tags=["Chat"])
 
