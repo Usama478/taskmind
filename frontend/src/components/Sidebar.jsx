@@ -6,6 +6,7 @@ import {
   FolderKanban,
   FolderPlus,
   History as HistoryIcon,
+  Kanban,
   LayoutDashboard,
   LogOut,
   MoreHorizontal,
@@ -21,6 +22,7 @@ import ProjectModal from './projects/ProjectModal'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/workspace', label: 'Workspace', icon: Kanban },
   { to: '/team', label: 'Team', icon: Users },
   { to: '/history', label: 'History', icon: HistoryIcon },
   { to: '/profile', label: 'Profile', icon: UserIcon },
